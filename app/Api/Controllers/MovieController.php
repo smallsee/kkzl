@@ -35,7 +35,7 @@ class MovieController extends BaseController
 
     public function hot(Request $request) {
         $movie = $this->movie->findHotAll(10);
-        $movie->load('files','commits');
+        $movie->load('commits');
         if(! $movie){
             return $this->reply->error(1,'视频没有数据');
         }

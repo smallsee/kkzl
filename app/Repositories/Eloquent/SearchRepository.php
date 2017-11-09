@@ -5,6 +5,7 @@ namespace App\Repositories\Eloquent;
 use App\Anime;
 use App\Article;
 use App\Movie;
+use App\Picture;
 use App\Tv;
 
 
@@ -28,6 +29,8 @@ class SearchRepository extends Repository{
             $data = Tv::where('title','like','%'.$title.'%')->get();
         }elseif ($type === 'movie'){
             $data = Movie::where('title','like','%'.$title.'%')->get();
+        }elseif ($type === 'picture'){
+            $data = Picture::where('title','like','%'.$title.'%')->get();
         }else{
             return 0;
         }

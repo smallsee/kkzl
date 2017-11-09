@@ -8,12 +8,12 @@ class Tv extends Model
 {
     protected $fillable = [
         'title', 'thumb','introduction',
-        'tag', 'star','status','update_date','url','episodes'
+        'tag', 'star','status','update_date','url','episodes','country'
     ];
 
     public function files()
     {
-        return $this->hasMany('App\AnimeFile','anime_id');
+        return $this->hasMany('App\TvFile','tv_id');
     }
 
     public function commits()

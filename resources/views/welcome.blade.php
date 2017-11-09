@@ -1,13 +1,1 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>开口奏协会</title>
-</head>
-<body>
-    哈哈哈哈哈哈哈哈哈
-</body>
-</html>
+<!DOCTYPE html><html><head><meta charset=utf-8><meta name=renderer content=webkit|ie-comp|ie-stand><meta http-equiv=X-UA-Compatible content="IE=edge,chrome=1"><meta name=viewport content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"><link rel="Shortcut Icon" href=./static/favicon.ico><link rel="Shortcut Icon" href=./static/favicon.ico><link rel=Bookmark href=./static/favicon.ico><title>kkzvue</title><link href=/static/css/app.b1e323914150915801b740f5bf411aa4.css rel=stylesheet></head><body><div id=app></div><script type=text/javascript src=/static/js/manifest.4a4aaccb89ffc44aa7eb.js></script><script type=text/javascript src=/static/js/vendor.07d194b9fccebd0448b7.js></script><script type=text/javascript src=/static/js/app.304fd40aeac9233311df.js></script></body></html>

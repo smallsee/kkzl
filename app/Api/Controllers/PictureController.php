@@ -51,7 +51,6 @@ class PictureController extends BaseController
         if(! $picture){
             return $this->reply->error(1,'文章没有数据');
         }
-
         return $this->collection($picture, new PictureTransformer())->addMeta('errno', 0);
     }
 

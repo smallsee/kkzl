@@ -80,7 +80,7 @@ $api->version('v1', function ($api) {
         $api->get('anime/hot','AnimeController@hot');
         $api->get('article/hot','ArticleController@hot');
         $api->get('tv/hot','TvController@hot');
-        $api->get('picture/hot','pictureController@hot');
+        $api->get('picture/hot','PictureController@hot');
         $api->get('movie/hot','MovieController@hot');
 
 

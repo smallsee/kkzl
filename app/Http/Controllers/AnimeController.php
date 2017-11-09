@@ -42,9 +42,6 @@ class AnimeController extends Controller
             }
 
 
-
-
-
             $count = 0;
 
             $anime_data = [
@@ -62,42 +59,9 @@ class AnimeController extends Controller
 
             if (Anime::where('title',$item['title'])->first()){
                 $anime = Anime::where('title',$item['title'])->first();
+
             }else{
                 $anime = Anime::create($anime_data);
-
-                foreach ($item['tag'] as $tag){
-                    $tag_id = Tag::where('name', $tag)->first()->id;
-                    TagType::firstOrCreate([
-                        'tag_id' =>  $tag_id,
-                        'tag_type' =>  'anime'
-                    ]);
-                }
-
-                if (isset($item['akira'][0])){
-                    if (strstr($item['akira'][0],"\n") == false){
-                        foreach ($item['akira'] as $akira){
-                            $akira_id = Akira::where('name', $akira)->first()->id;
-                            AkiraType::firstOrCreate([
-                                'akira_id' =>  $akira_id,
-                                'akira_type' =>  'anime'
-                            ]);
-                        }
-                    }else{
-                        $akira_id = Akira::where('name', '未知声优')->first()->id;
-                        AkiraType::firstOrCreate([
-                            'akira_id' =>  $akira_id,
-                            'akira_type' =>  'anime'
-                        ]);
-                    }
-                }else{
-                    $akira_id = Akira::where('name', '未知声优')->first()->id;
-                    AkiraType::firstOrCreate([
-                        'akira_id' =>  $akira_id,
-                        'akira_type' =>  'anime'
-                    ]);
-                }
-
-
                 foreach ($item['file_url'] as $file_url){
 
                     $file_name = isset($item['file_name'][$count]) ? $item['file_name'][$count] : '';

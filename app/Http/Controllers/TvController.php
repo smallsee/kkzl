@@ -22,28 +22,20 @@ class TvController extends Controller
         $data = json_decode($json_string, true);
 
         foreach ($data as $item){
-
 //            dd(strstr($item['akira'][0],"\n") == false);
-
-            foreach ($item['tag'] as $tag){
-                $tag = Tag::firstOrCreate(['name' => $tag]);
-            }
 
             if (isset($item['akira'][0])){
                 if (strstr($item['akira'][0],"\n") == false){
                     foreach ($item['akira'] as $akira){
                         $star = Star::firstOrCreate(['name' => $akira]);
-                        $director= Director::firstOrCreate(['name' => $akira]);
                     }
                 }else{
                     $star = Star::firstOrCreate(['name' => '未知明星']);
-                    $director = Director::firstOrCreate(['name' => '未知导演']);
                 }
                 $akiraData = strstr($item['akira'][0],"\n") == false ? implode(',',$item['akira']) : '未知声优';
             }else{
                 $star = Star::firstOrCreate(['name' => '未知明星']);
-                $director = Director::firstOrCreate(['name' => '未知导演']);
-                $akiraData = '未知声优';
+                $akiraData = '未知明星';
             }
 
 
@@ -56,12 +48,11 @@ class TvController extends Controller
                 'title' => $item['title'],
                 'thumb' => asset('').$item['local_thumb'],
                 'introduction' => $item['abstract'],
+                'country' => $item['language'],
                 'status' => 1,
                 'episodes' => $item['episodes'],
-                'tag' => implode(',',$item['tag']),
+                'tag' => '未知类型',
                 'star' => $akiraData,
-                'director' => $akiraData,
-                'country' => $item['address'],
             ];
 
 
@@ -71,64 +62,6 @@ class TvController extends Controller
             }else{
                 $tv = Tv::create($tv_data);
 
-                foreach ($item['tag'] as $tag){
-                    $tag_id = Tag::where('name', $tag)->first()->id;
-                    TagType::firstOrCreate([
-                        'tag_id' =>  $tag_id,
-                        'tag_type' =>  'tv'
-                    ]);
-                }
-
-                if (isset($item['akira'][0])){
-
-                    if (strstr($item['akira'][0],"\n") == false){
-                        foreach ($item['akira'] as $akira){
-                            $star_id = Star::where('name', $akira)->first()->id;
-                            $director = Director::where('name', $akira)->first()->id;
-
-
-                            StarType::firstOrCreate([
-                                'star_id' =>  $star_id,
-                                'star_type' =>  'tv'
-                            ]);
-
-                            DirectorType::firstOrCreate([
-                                'director_id' =>  $director,
-                                'director_type' =>  'tv'
-                            ]);
-
-                        }
-                    }else{
-                        $star_id = Star::where('name', '未知明星')->first()->id;
-                        $director = Director::where('name', '未知导演')->first()->id;
-
-
-
-                        StarType::firstOrCreate([
-                            'star_id' =>  $star_id,
-                            'star_type' =>  'tv'
-                        ]);
-
-                        DirectorType::firstOrCreate([
-                            'director_id' =>  $director,
-                            'director_type' =>  'tv'
-                        ]);
-                    }
-                }else{
-                    $star_id = Star::where('name', '未知明星')->first()->id;
-                    $director = Director::where('name', '未知导演')->first()->id;
-
-
-                    StarType::firstOrCreate([
-                        'star_id' =>  $star_id,
-                        'star_type' =>  'tv'
-                    ]);
-
-                    DirectorType::firstOrCreate([
-                        'director_id' =>  $director,
-                        'director_type' =>  'tv'
-                    ]);
-                }
 
                 foreach ($item['file_url'] as $file_url){
 
