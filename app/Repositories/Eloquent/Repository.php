@@ -52,6 +52,11 @@ abstract class Repository implements RepositoryInterface {
         return $this->model->get();
     }
 
+    public function findSkipOrderTime($skip){
+
+        return $this->model->orderBy('id','desc')->skip( $skip * 80 )->take( ($skip+1)*80)->get();
+    }
+
 
     /**
      * 作用：根据ID讲状态值更改为0

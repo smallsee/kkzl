@@ -44,8 +44,9 @@ class MovieController extends BaseController
     }
 
 
-    public function index() {
-        $movie = $this->movie->findAll();
+    public function index(Request $request) {
+        $skip = $request->get('skip' , 0);
+        $movie = $this->movie->findSkipOrderTime($skip);
         $movie->load('commits');
 
 

@@ -32,9 +32,10 @@ class PictureController extends BaseController
         $this->reply = $reply;
     }
 
-    public function index(){
+    public function index(Request $request){
 
-        $picture = $this->picture->findAll();
+        $skip = $request->get('skip' , 0);
+        $picture = $this->picture->findSkipOrderTime($skip);
         $picture->load('user');
 
         if(! $picture){

@@ -11,13 +11,20 @@
 |
 */
 
+//Route::get('/', function () {
+//    return view('welcome');
+//});
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
 });
 
 Route::get('/anime/mysql','AnimeController@mysql');
 Route::get('/movie/mysql','MovieController@mysql');
 Route::get('/tv/mysql','TvController@mysql');
+
+
+
+Route::get('/wx/login','WxController@login');
 
 Auth::routes();
 
@@ -31,8 +38,13 @@ $api->version('v1', function ($api) {
     $api->group(['namespace' => 'App\Api\Controllers'], function ($api) {
 
 
-        $api->get('home','HomeController@index');
+        //公司管辖
+        $api->resource('xcx','XcxController');
+        $api->resource('brtank','BrtankController');
+        $api->resource('brfloor','BrfloorController');
 
+        //自己的
+        $api->get('home','HomeController@index');
         $api->post('user/login','AuthController@authenticate');
         $api->post('user/register','AuthController@register');
         $api->post('user/info/thumb','UserController@thumb');
@@ -76,6 +88,8 @@ $api->version('v1', function ($api) {
         $api->resource('admin/picture','PictureController');
         $api->resource('admin/tv','TvController');
         $api->resource('admin/article','ArticleController');
+
+
 
         $api->get('anime/hot','AnimeController@hot');
         $api->get('article/hot','ArticleController@hot');

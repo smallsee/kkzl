@@ -45,10 +45,9 @@ class TvController extends BaseController
     }
     
 
-    public function index() {
-        $tv = $this->tv->findAll();
-        $tv->load('commits');
-
+    public function index(Request $request) {
+        $skip = $request->get('skip' , 0);
+        $tv = $this->tv->findSkipOrderTime($skip);
 
         if(! $tv){
             return $this->reply->error(1,'视频没有数据');

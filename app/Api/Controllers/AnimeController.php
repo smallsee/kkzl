@@ -45,15 +45,12 @@ class AnimeController extends BaseController
     }
 
 
-    public function index() {
-        $anime = $this->anime->findAll();
-        $anime->load('commits');
-
-
+    public function index(Request $request) {
+        $skip = $request->get('skip' , 0);
+        $anime = $this->anime->findSkipOrderTime($skip);
         if(! $anime){
             return $this->reply->error(1,'视频没有数据');
         }
-
         return $this->collection($anime, new AnimeTransformer())->addMeta('errno', 0);
     }
 
